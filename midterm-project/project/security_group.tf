@@ -41,7 +41,7 @@ resource "aws_security_group" "database_sg" {
         from_port   = 3306
         to_port     = 3306
         protocol    = "tcp"
-        cidr_blocks = [ingress.value.private_ip + "/32"]
+        cidr_blocks = [format("%s/32", ingress.value.private_ip)]
         }
     }
     dynamic "ingress" {
@@ -50,7 +50,7 @@ resource "aws_security_group" "database_sg" {
         from_port   = 22
         to_port     = 22
         protocol    = "tcp"
-        cidr_blocks = [ingress.value.private_ip + "/32"]
+        cidr_blocks = [format("%s/32", ingress.value.private_ip)]
         }
     }
 }
@@ -66,7 +66,7 @@ resource "aws_security_group" "instance_commu" {
         from_port   = 22
         to_port     = 22
         protocol    = "tcp"
-        cidr_blocks = [ingress.value.private_ip + "/32"]
+        cidr_blocks = [format("%s/32", ingress.value.private_ip)]
         }
     }
     dynamic "ingress" {
@@ -75,7 +75,7 @@ resource "aws_security_group" "instance_commu" {
         from_port   = 22
         to_port     = 22
         protocol    = "tcp"
-        cidr_blocks = [ingress.value.private_ip + "/32"]
+        cidr_blocks = [format("%s/32", ingress.value.private_ip)]
         }
     }
 }
