@@ -40,14 +40,14 @@ resource "aws_network_interface" "wordpress_public" {
     security_groups = [aws_security_group.wordpress_sg.id]
 }
 resource "aws_network_interface" "wordpress_private" {
-    depends_on = [aws_vpc.wordpress_vpc, aws_subnet.wordpress_private_subnet, aws_security_group.instance_commu]
+    depends_on = [aws_vpc.wordpress_vpc, aws_subnet.wordpress_private_subnet, aws_security_group.wordpress_private_sg]
     subnet_id = aws_subnet.wordpress_private_subnet.id
-    security_groups = [aws_security_group.instance_commu.id]
+    security_groups = [aws_security_group.wordpress_private_sg.id]
 }
 resource "aws_network_interface" "database_commu" {
-    depends_on = [aws_vpc.wordpress_vpc, aws_subnet.wordpress_private_subnet, aws_security_group.instance_commu]
+    depends_on = [aws_vpc.wordpress_vpc, aws_subnet.wordpress_private_subnet, aws_security_group.database_commu_sg]
     subnet_id = aws_subnet.wordpress_private_subnet.id
-    security_groups = [aws_security_group.instance_commu.id]
+    security_groups = [aws_security_group.database_commu_sg.id]
 }
 resource "aws_network_interface" "database" {
     depends_on = [aws_vpc.wordpress_vpc, aws_subnet.database_subnet, aws_security_group.database_sg]
