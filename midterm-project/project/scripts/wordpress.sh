@@ -1,3 +1,4 @@
+#!/bin/bash
 "wget https://wordpress.org/latest.tar.gz"
 "tar -xzf latest.tar.gz"
 "cp wordpress/wp-config-sample.php wordpress/wp-config.php"
