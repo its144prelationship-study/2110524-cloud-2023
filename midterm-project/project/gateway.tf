@@ -30,8 +30,8 @@ resource "aws_eip_association" "wordpress_eip_assoc" {
     allocation_id = aws_eip.wordpress_eip.id
 }
 
-resource "aws_eip_association" "nat_eip_assoc" {
-    depends_on = [ aws_eip.nat_eip, aws_nat_gateway.wordpress_nat_gw ]
-    network_interface_id = aws_network_interface.database.id
-    allocation_id = aws_eip.nat_eip.id
-}
+# resource "aws_eip_association" "nat_eip_assoc" {
+#     depends_on = [ aws_eip.nat_eip, aws_nat_gateway.wordpress_nat_gw ]
+#     allocation_id = aws_eip.nat_eip.id
+#     network_interface_id = aws_nat_gateway.wordpress_nat_gw.network_interface_id
+# }

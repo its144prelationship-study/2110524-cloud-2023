@@ -4,6 +4,7 @@
 "sed -i 's/database_name_here/wordpress-db/' wordpress/wp-config.php"
 "sed -i 's/username_here/${var.database_user}/' wordpress/wp-config.php"
 "sed -i 's/password_here/${var.database_pass}/' wordpress/wp-config.php"
+
 "sudo yum install httpd"
 "sudo systemctl enable httpd"
 "sudo systemctl start httpd"

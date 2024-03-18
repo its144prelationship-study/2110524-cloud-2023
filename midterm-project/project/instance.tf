@@ -15,6 +15,9 @@ resource "aws_instance" "wordpress_instance" {
     security_groups = [aws_security_group.wordpress_sg.id]
 
     user_data = file("./scripts/wordpress.sh")
+    # provisioner "local-exec" {
+    #   command = "./scripts/provisioner.sh"
+    # }
 }
 
 resource "aws_instance" "database_instance" {
