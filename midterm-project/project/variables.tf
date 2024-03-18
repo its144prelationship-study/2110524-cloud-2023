@@ -69,3 +69,39 @@ variable "admin_pass" {
     type = string
     default = "password"
 }
+
+variable "iam_user" {
+    description = "The IAM user"
+    type = string
+    default = "user"
+}
+
+variable "vpc_cidr" {
+    description = "The CIDR block for the VPC"
+    type = string
+    default = "10.97.0.0/16"
+}
+
+variable "wordpress_public_subnet_cidr" {
+    description = "The CIDR block for the public subnet"
+    type = string
+    default = "10.97.1.0/24"
+}
+
+variable "wordpress_private_subnet_cidr" {
+    description = "The CIDR block for the private subnet"
+    type = string
+    default = "10.97.2.0/24"
+}
+
+variable "database_subnet_cidr" {
+    description = "The CIDR block for the database subnet"
+    type = string
+    default = "10.97.3.0/24"
+}
+
+variable "nat_subnet_cidr" {
+    description = "The CIDR block for the NAT subnet"
+    type = string
+    default = "10.97.4.0/24"
+}

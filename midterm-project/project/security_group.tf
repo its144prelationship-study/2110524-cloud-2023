@@ -13,13 +13,13 @@ resource "aws_security_group" "wordpress_sg" {
     ingress {
         from_port   = 80
         to_port     = 80
-        protocol    = "http"
+        protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
         from_port   = 22
         to_port     = 22
-        protocol    = "ssh"
+        protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
 }
@@ -40,8 +40,8 @@ resource "aws_security_group" "database_sg" {
         content {
         from_port   = 3306
         to_port     = 3306
-        protocol    = "mysql"
-        cidr_blocks = [ingress.value.private_ip]
+        protocol    = "tcp"
+        cidr_blocks = [ingress.value.private_ip + "/32"]
         }
     }
     dynamic "ingress" {
@@ -49,8 +49,8 @@ resource "aws_security_group" "database_sg" {
         content {
         from_port   = 22
         to_port     = 22
-        protocol    = "ssh"
-        cidr_blocks = [ingress.value.private_ip]
+        protocol    = "tcp"
+        cidr_blocks = [ingress.value.private_ip + "/32"]
         }
     }
 }
@@ -65,8 +65,8 @@ resource "aws_security_group" "instance_commu" {
         content {
         from_port   = 22
         to_port     = 22
-        protocol    = "ssh"
-        cidr_blocks = [ingress.value.private_ip]
+        protocol    = "tcp"
+        cidr_blocks = [ingress.value.private_ip + "/32"]
         }
     }
     dynamic "ingress" {
@@ -74,8 +74,8 @@ resource "aws_security_group" "instance_commu" {
         content {
         from_port   = 22
         to_port     = 22
-        protocol    = "ssh"
-        cidr_blocks = [ingress.value.private_ip]
+        protocol    = "tcp"
+        cidr_blocks = [ingress.value.private_ip + "/32"]
         }
     }
 }
