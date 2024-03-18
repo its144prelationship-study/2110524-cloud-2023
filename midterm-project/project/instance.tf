@@ -46,22 +46,15 @@ resource "aws_instance" "database_instance" {
         user_data = <<-EOF
         #!/bin/bash
         sudo apt update
-        sudo apt install mariadb-server -y
-
-        sudo mysql_secure_installation <<EOFSECURE
-        ${var.database_pass}
-        ${var.database_pass}
-        n
-        n
-        n
-        n
-        EOFSECURE
-
+        sudo apt install -y mariadb-server
+        sudo systemctl enable mariadb
+        sudo systemctl start mariadb
         sudo mysql -u root -p"${var.database_pass}" <<EOFMYSQL
         CREATE DATABASE wordpress_db;
         CREATE USER 'wordpress-user'@'${aws_instance.wordpress_instance.private_ip}' IDENTIFIED BY '${var.database_pass}';
         GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress-user'@'${aws_instance.wordpress_instance.private_ip}';
         FLUSH PRIVILEGES;
         EOFMYSQL
+        sudo systemctl restart mariadb
         EOF
     }
