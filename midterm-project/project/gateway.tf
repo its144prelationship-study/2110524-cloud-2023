@@ -12,8 +12,9 @@ resource "aws_nat_gateway" "wordpress_nat_gw" {
 
 // 12. Elastic IP
 resource "aws_eip" "wordpress_eip" {
-    depends_on = [ aws_network_interface.wordpress_public ]
+    depends_on = [ aws_network_interface.wordpress_public, aws_instance.wordpress_instance ]
     network_interface = aws_network_interface.wordpress_public.id
+    associate_with_private_ip = aws_network_interface.wordpress_public.private_ip
 }
 
 resource "aws_eip" "nat_eip" {
