@@ -41,6 +41,7 @@ resource "aws_security_group" "database_sg" {
         protocol    = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
 }
 
 resource "aws_security_group" "wordpress_private_sg" {
@@ -89,6 +90,13 @@ resource "aws_security_group" "database_commu_sg" {
         from_port   = -1
         to_port     = -1
         protocol    = "icmp"
+        security_groups = [aws_security_group.wordpress_private_sg.id]
+    }
+
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
         security_groups = [aws_security_group.wordpress_private_sg.id]
     }
 }

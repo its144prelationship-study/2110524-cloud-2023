@@ -26,12 +26,7 @@ data "aws_iam_policy_document" "wordpress_s3_policy_document" {
   depends_on = [aws_s3_bucket.wordpress_bucket]
   statement {
     actions = [
-      "s3:ListBucket",
-      "s3:DeleteObject",
-      "s3:GetObject",
-      "s3:GetObjectAcl",
-      "s3:PutObject",
-      "s3:PutObjectAcl"
+      "s3:*"
     ]
     resources = [
       aws_s3_bucket.wordpress_bucket.arn,
