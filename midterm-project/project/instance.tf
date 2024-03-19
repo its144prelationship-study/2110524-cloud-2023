@@ -3,6 +3,10 @@ resource "aws_instance" "wordpress_instance" {
     depends_on = [ aws_vpc.wordpress_vpc, aws_subnet.wordpress_public_subnet, aws_network_interface.wordpress_public, aws_network_interface.wordpress_private, aws_instance.database_instance ]
     ami           = var.ami
     instance_type = var.instance_type
+
+    tags = {
+      Name = "wordpress_instance"
+    }
     network_interface {
         network_interface_id = aws_network_interface.wordpress_public.id
         device_index = 0
@@ -25,7 +29,7 @@ resource "aws_instance" "wordpress_instance" {
     tar -xzf latest.tar.gz
     sudo cp -r wordpress/* /var/www/html/
     sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-    sudo sed -i "s/database_name_here/wordpress_db/" /var/www/html/wp-config.php
+    sudo sed -i "s/database_name_here/${var.database_name}/" /var/www/html/wp-config.php
     sudo sed -i "s/username_here/${var.database_user}/" /var/www/html/wp-config.php
     sudo sed -i "s/password_here/${var.database_pass}/" /var/www/html/wp-config.php
     sudo sed -i "s/localhost/${aws_instance.database_instance.private_ip}/" /var/www/html/wp-config.php
@@ -41,6 +45,9 @@ resource "aws_instance" "database_instance" {
     depends_on = [ aws_vpc.wordpress_vpc, aws_subnet.database_subnet, aws_subnet.wordpress_private_subnet, aws_network_interface.database, aws_network_interface.database_commu, aws_eip.wordpress_eip]
     ami           = var.ami
     instance_type = var.instance_type
+    tags = {
+      Name = "database_instance"
+    }
     network_interface {
         network_interface_id = aws_network_interface.database.id
         device_index = 0
@@ -58,7 +65,8 @@ resource "aws_instance" "database_instance" {
 
         sudo mysql_secure_installation <<EOFSECURE
         ${var.database_pass}
-        ${var.database_pass}
+        n
+        n
         n
         n
         n
@@ -66,10 +74,12 @@ resource "aws_instance" "database_instance" {
         EOFSECURE
 
         sudo mysql -u root -p"${var.database_pass}" <<EOFMYSQL
-        CREATE DATABASE wordpress_db;
-        CREATE USER 'wordpress-user'@'${aws_eip.wordpress_eip.public_ip}' IDENTIFIED BY '${var.database_pass}';
-        GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress-user'@'${aws_eip.wordpress_eip.public_ip}';
+        CREATE DATABASE ${var.database_name};
+        CREATE USER '${var.database_user}'@'%' IDENTIFIED BY '${var.database_pass}';
+        GRANT ALL PRIVILEGES ON `${var.database_name}`.* TO '${var.database_user}'@'%';
         FLUSH PRIVILEGES;
+        exit
         EOFMYSQL
+        sudo systemctl restart mariadb
         EOF
     }

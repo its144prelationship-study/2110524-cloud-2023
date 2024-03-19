@@ -3,6 +3,9 @@ resource "aws_security_group" "wordpress_sg" {
     name        = "wordpress_sg"
     vpc_id      = aws_vpc.wordpress_vpc.id
     depends_on = [ aws_vpc.wordpress_vpc ]
+    tags = {
+      Name = "wordpress_sg"
+    }
 
     egress {
         from_port   = 0
@@ -29,6 +32,9 @@ resource "aws_security_group" "database_sg" {
     vpc_id      = aws_vpc.wordpress_vpc.id
     depends_on = [ aws_vpc.wordpress_vpc ]
 
+    tags = {
+    Name = "database_sg"
+    }
     egress {
         from_port   = 0
         to_port     = 0
@@ -41,6 +47,10 @@ resource "aws_security_group" "wordpress_private_sg" {
     name        = "wordpress_private_sg" 
     vpc_id      = aws_vpc.wordpress_vpc.id
     depends_on = [ aws_vpc.wordpress_vpc ]
+
+    tags = {
+      Name = "wordpress_private_sg"
+    }
     egress {
         from_port   = 0
         to_port     = 0
@@ -58,6 +68,10 @@ resource "aws_security_group" "database_commu_sg" {
     name        = "database_commu_sg"
     vpc_id      = aws_vpc.wordpress_vpc.id
     depends_on = [ aws_vpc.wordpress_vpc, aws_security_group.wordpress_private_sg ]
+
+    tags = {
+      Name = "database_commu_sg"
+    }
     egress {
         from_port   = 0
         to_port     = 0
@@ -68,6 +82,13 @@ resource "aws_security_group" "database_commu_sg" {
         from_port   = 3306
         to_port     = 3306
         protocol    = "tcp"
+        security_groups = [aws_security_group.wordpress_private_sg.id]
+    }
+
+    ingress {
+        from_port   = -1
+        to_port     = -1
+        protocol    = "icmp"
         security_groups = [aws_security_group.wordpress_private_sg.id]
     }
 }
