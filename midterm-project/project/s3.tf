@@ -21,3 +21,4 @@ resource "aws_s3_bucket_ownership_controls" "wordpress_bucket_ownership_controls
         object_ownership = "BucketOwnerPreferred"
     }
 }
+
