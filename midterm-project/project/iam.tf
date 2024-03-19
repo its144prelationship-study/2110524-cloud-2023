@@ -8,7 +8,6 @@ resource "aws_iam_access_key" "wordpress_s3_access_key" {
 resource "aws_iam_user" "wordpress_s3_user" {
   depends_on = [aws_s3_bucket.wordpress_bucket, aws_iam_policy.wordpress_s3_policy]
   name = var.admin_user
-  permissions_boundary = aws_iam_policy.wordpress_s3_policy.arn
   tags = {
     Name = var.iam_user
   }
@@ -25,6 +24,8 @@ resource "aws_iam_policy" "wordpress_s3_policy" {
 data "aws_iam_policy_document" "wordpress_s3_policy_document" {
   depends_on = [aws_s3_bucket.wordpress_bucket]
   statement {
+    sid = "AllowS3BucketAccess"
+    effect = "Allow"
     actions = [
       "s3:*"
     ]
