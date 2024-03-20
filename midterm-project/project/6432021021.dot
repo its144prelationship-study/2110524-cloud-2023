@@ -1,0 +1,146 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_eip.nat_eip (expand)" [label = "aws_eip.nat_eip", shape = "box"]
+		"[root] aws_eip.wordpress_eip (expand)" [label = "aws_eip.wordpress_eip", shape = "box"]
+		"[root] aws_iam_access_key.wordpress_s3_access_key (expand)" [label = "aws_iam_access_key.wordpress_s3_access_key", shape = "box"]
+		"[root] aws_iam_policy.wordpress_s3_policy (expand)" [label = "aws_iam_policy.wordpress_s3_policy", shape = "box"]
+		"[root] aws_iam_user.wordpress_s3_user (expand)" [label = "aws_iam_user.wordpress_s3_user", shape = "box"]
+		"[root] aws_iam_user_policy_attachment.wordpress_s3_policy_attachment (expand)" [label = "aws_iam_user_policy_attachment.wordpress_s3_policy_attachment", shape = "box"]
+		"[root] aws_instance.database_instance (expand)" [label = "aws_instance.database_instance", shape = "box"]
+		"[root] aws_instance.wordpress_instance (expand)" [label = "aws_instance.wordpress_instance", shape = "box"]
+		"[root] aws_internet_gateway.wordpress_igw (expand)" [label = "aws_internet_gateway.wordpress_igw", shape = "box"]
+		"[root] aws_nat_gateway.wordpress_nat_gw (expand)" [label = "aws_nat_gateway.wordpress_nat_gw", shape = "box"]
+		"[root] aws_network_interface.database (expand)" [label = "aws_network_interface.database", shape = "box"]
+		"[root] aws_network_interface.database_commu (expand)" [label = "aws_network_interface.database_commu", shape = "box"]
+		"[root] aws_network_interface.wordpress_private (expand)" [label = "aws_network_interface.wordpress_private", shape = "box"]
+		"[root] aws_network_interface.wordpress_public (expand)" [label = "aws_network_interface.wordpress_public", shape = "box"]
+		"[root] aws_route.gateway_route (expand)" [label = "aws_route.gateway_route", shape = "box"]
+		"[root] aws_route.private_route (expand)" [label = "aws_route.private_route", shape = "box"]
+		"[root] aws_route.public_route (expand)" [label = "aws_route.public_route", shape = "box"]
+		"[root] aws_route_table.gateway_route_table (expand)" [label = "aws_route_table.gateway_route_table", shape = "box"]
+		"[root] aws_route_table.private_route_table (expand)" [label = "aws_route_table.private_route_table", shape = "box"]
+		"[root] aws_route_table.public_route_table (expand)" [label = "aws_route_table.public_route_table", shape = "box"]
+		"[root] aws_route_table_association.gateway_route_table_assoc (expand)" [label = "aws_route_table_association.gateway_route_table_assoc", shape = "box"]
+		"[root] aws_route_table_association.private_route_table_assoc (expand)" [label = "aws_route_table_association.private_route_table_assoc", shape = "box"]
+		"[root] aws_route_table_association.public_route_table_assoc (expand)" [label = "aws_route_table_association.public_route_table_assoc", shape = "box"]
+		"[root] aws_s3_bucket.wordpress_bucket (expand)" [label = "aws_s3_bucket.wordpress_bucket", shape = "box"]
+		"[root] aws_s3_bucket_ownership_controls.wordpress_bucket_ownership_controls (expand)" [label = "aws_s3_bucket_ownership_controls.wordpress_bucket_ownership_controls", shape = "box"]
+		"[root] aws_s3_bucket_public_access_block.wordpress_bucket_access_block (expand)" [label = "aws_s3_bucket_public_access_block.wordpress_bucket_access_block", shape = "box"]
+		"[root] aws_security_group.database_commu_sg (expand)" [label = "aws_security_group.database_commu_sg", shape = "box"]
+		"[root] aws_security_group.database_sg (expand)" [label = "aws_security_group.database_sg", shape = "box"]
+		"[root] aws_security_group.wordpress_private_sg (expand)" [label = "aws_security_group.wordpress_private_sg", shape = "box"]
+		"[root] aws_security_group.wordpress_sg (expand)" [label = "aws_security_group.wordpress_sg", shape = "box"]
+		"[root] aws_subnet.database_subnet (expand)" [label = "aws_subnet.database_subnet", shape = "box"]
+		"[root] aws_subnet.nat_subnet (expand)" [label = "aws_subnet.nat_subnet", shape = "box"]
+		"[root] aws_subnet.wordpress_private_subnet (expand)" [label = "aws_subnet.wordpress_private_subnet", shape = "box"]
+		"[root] aws_subnet.wordpress_public_subnet (expand)" [label = "aws_subnet.wordpress_public_subnet", shape = "box"]
+		"[root] aws_vpc.wordpress_vpc (expand)" [label = "aws_vpc.wordpress_vpc", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.admin_pass" [label = "var.admin_pass", shape = "note"]
+		"[root] var.admin_user" [label = "var.admin_user", shape = "note"]
+		"[root] var.ami" [label = "var.ami", shape = "note"]
+		"[root] var.availability_zone" [label = "var.availability_zone", shape = "note"]
+		"[root] var.bucket_name" [label = "var.bucket_name", shape = "note"]
+		"[root] var.database_instance" [label = "var.database_instance", shape = "note"]
+		"[root] var.database_name" [label = "var.database_name", shape = "note"]
+		"[root] var.database_pass" [label = "var.database_pass", shape = "note"]
+		"[root] var.database_subnet_cidr" [label = "var.database_subnet_cidr", shape = "note"]
+		"[root] var.database_user" [label = "var.database_user", shape = "note"]
+		"[root] var.iam_user" [label = "var.iam_user", shape = "note"]
+		"[root] var.instance_type" [label = "var.instance_type", shape = "note"]
+		"[root] var.nat_subnet_cidr" [label = "var.nat_subnet_cidr", shape = "note"]
+		"[root] var.region" [label = "var.region", shape = "note"]
+		"[root] var.vpc_cidr" [label = "var.vpc_cidr", shape = "note"]
+		"[root] var.wordpress_instance" [label = "var.wordpress_instance", shape = "note"]
+		"[root] var.wordpress_private_subnet_cidr" [label = "var.wordpress_private_subnet_cidr", shape = "note"]
+		"[root] var.wordpress_public_subnet_cidr" [label = "var.wordpress_public_subnet_cidr", shape = "note"]
+		"[root] aws_eip.nat_eip (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_eip.wordpress_eip (expand)" -> "[root] aws_network_interface.wordpress_public (expand)"
+		"[root] aws_iam_access_key.wordpress_s3_access_key (expand)" -> "[root] aws_iam_user.wordpress_s3_user (expand)"
+		"[root] aws_iam_policy.wordpress_s3_policy (expand)" -> "[root] aws_s3_bucket.wordpress_bucket (expand)"
+		"[root] aws_iam_user.wordpress_s3_user (expand)" -> "[root] aws_iam_policy.wordpress_s3_policy (expand)"
+		"[root] aws_iam_user.wordpress_s3_user (expand)" -> "[root] var.admin_user"
+		"[root] aws_iam_user.wordpress_s3_user (expand)" -> "[root] var.iam_user"
+		"[root] aws_iam_user_policy_attachment.wordpress_s3_policy_attachment (expand)" -> "[root] aws_iam_user.wordpress_s3_user (expand)"
+		"[root] aws_instance.database_instance (expand)" -> "[root] aws_network_interface.database (expand)"
+		"[root] aws_instance.database_instance (expand)" -> "[root] aws_network_interface.database_commu (expand)"
+		"[root] aws_instance.database_instance (expand)" -> "[root] aws_network_interface.wordpress_private (expand)"
+		"[root] aws_instance.database_instance (expand)" -> "[root] var.ami"
+		"[root] aws_instance.database_instance (expand)" -> "[root] var.database_name"
+		"[root] aws_instance.database_instance (expand)" -> "[root] var.database_pass"
+		"[root] aws_instance.database_instance (expand)" -> "[root] var.database_user"
+		"[root] aws_instance.database_instance (expand)" -> "[root] var.instance_type"
+		"[root] aws_instance.wordpress_instance (expand)" -> "[root] aws_eip.wordpress_eip (expand)"
+		"[root] aws_instance.wordpress_instance (expand)" -> "[root] aws_iam_access_key.wordpress_s3_access_key (expand)"
+		"[root] aws_instance.wordpress_instance (expand)" -> "[root] aws_instance.database_instance (expand)"
+		"[root] aws_instance.wordpress_instance (expand)" -> "[root] var.admin_pass"
+		"[root] aws_internet_gateway.wordpress_igw (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_nat_gateway.wordpress_nat_gw (expand)" -> "[root] aws_eip.nat_eip (expand)"
+		"[root] aws_nat_gateway.wordpress_nat_gw (expand)" -> "[root] aws_subnet.nat_subnet (expand)"
+		"[root] aws_network_interface.database (expand)" -> "[root] aws_security_group.database_sg (expand)"
+		"[root] aws_network_interface.database (expand)" -> "[root] aws_subnet.database_subnet (expand)"
+		"[root] aws_network_interface.database_commu (expand)" -> "[root] aws_security_group.database_commu_sg (expand)"
+		"[root] aws_network_interface.database_commu (expand)" -> "[root] aws_subnet.wordpress_private_subnet (expand)"
+		"[root] aws_network_interface.wordpress_private (expand)" -> "[root] aws_security_group.wordpress_private_sg (expand)"
+		"[root] aws_network_interface.wordpress_private (expand)" -> "[root] aws_subnet.wordpress_private_subnet (expand)"
+		"[root] aws_network_interface.wordpress_public (expand)" -> "[root] aws_security_group.wordpress_sg (expand)"
+		"[root] aws_network_interface.wordpress_public (expand)" -> "[root] aws_subnet.wordpress_public_subnet (expand)"
+		"[root] aws_route.gateway_route (expand)" -> "[root] aws_internet_gateway.wordpress_igw (expand)"
+		"[root] aws_route.gateway_route (expand)" -> "[root] aws_route_table.gateway_route_table (expand)"
+		"[root] aws_route.private_route (expand)" -> "[root] aws_nat_gateway.wordpress_nat_gw (expand)"
+		"[root] aws_route.private_route (expand)" -> "[root] aws_route_table.private_route_table (expand)"
+		"[root] aws_route.private_route (expand)" -> "[root] aws_subnet.database_subnet (expand)"
+		"[root] aws_route.public_route (expand)" -> "[root] aws_route_table.public_route_table (expand)"
+		"[root] aws_route.public_route (expand)" -> "[root] aws_subnet.wordpress_public_subnet (expand)"
+		"[root] aws_route_table.gateway_route_table (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_route_table.private_route_table (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_route_table.public_route_table (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_route_table_association.gateway_route_table_assoc (expand)" -> "[root] aws_route_table.gateway_route_table (expand)"
+		"[root] aws_route_table_association.gateway_route_table_assoc (expand)" -> "[root] aws_subnet.nat_subnet (expand)"
+		"[root] aws_route_table_association.private_route_table_assoc (expand)" -> "[root] aws_route_table.private_route_table (expand)"
+		"[root] aws_route_table_association.private_route_table_assoc (expand)" -> "[root] aws_subnet.database_subnet (expand)"
+		"[root] aws_route_table_association.private_route_table_assoc (expand)" -> "[root] aws_subnet.wordpress_private_subnet (expand)"
+		"[root] aws_route_table_association.public_route_table_assoc (expand)" -> "[root] aws_route_table.public_route_table (expand)"
+		"[root] aws_route_table_association.public_route_table_assoc (expand)" -> "[root] aws_subnet.wordpress_public_subnet (expand)"
+		"[root] aws_s3_bucket.wordpress_bucket (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_s3_bucket.wordpress_bucket (expand)" -> "[root] var.bucket_name"
+		"[root] aws_s3_bucket_ownership_controls.wordpress_bucket_ownership_controls (expand)" -> "[root] aws_s3_bucket.wordpress_bucket (expand)"
+		"[root] aws_s3_bucket_public_access_block.wordpress_bucket_access_block (expand)" -> "[root] aws_s3_bucket.wordpress_bucket (expand)"
+		"[root] aws_security_group.database_commu_sg (expand)" -> "[root] aws_security_group.wordpress_private_sg (expand)"
+		"[root] aws_security_group.database_sg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_security_group.wordpress_private_sg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_security_group.wordpress_sg (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_subnet.database_subnet (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_subnet.database_subnet (expand)" -> "[root] var.availability_zone"
+		"[root] aws_subnet.database_subnet (expand)" -> "[root] var.database_subnet_cidr"
+		"[root] aws_subnet.nat_subnet (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_subnet.nat_subnet (expand)" -> "[root] var.availability_zone"
+		"[root] aws_subnet.nat_subnet (expand)" -> "[root] var.nat_subnet_cidr"
+		"[root] aws_subnet.wordpress_private_subnet (expand)" -> "[root] aws_vpc.wordpress_vpc (expand)"
+		"[root] aws_subnet.wordpress_private_subnet (expand)" -> "[root] var.availability_zone"
+		"[root] aws_subnet.wordpress_private_subnet (expand)" -> "[root] var.wordpress_private_subnet_cidr"
+		"[root] aws_subnet.wordpress_public_subnet (expand)" -> "[root] aws_internet_gateway.wordpress_igw (expand)"
+		"[root] aws_subnet.wordpress_public_subnet (expand)" -> "[root] var.availability_zone"
+		"[root] aws_subnet.wordpress_public_subnet (expand)" -> "[root] var.wordpress_public_subnet_cidr"
+		"[root] aws_vpc.wordpress_vpc (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_vpc.wordpress_vpc (expand)" -> "[root] var.vpc_cidr"
+		"[root] output.public_ip (expand)" -> "[root] aws_instance.wordpress_instance (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_iam_user_policy_attachment.wordpress_s3_policy_attachment (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.wordpress_instance (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route.gateway_route (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route.private_route (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route.public_route (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.gateway_route_table_assoc (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.private_route_table_assoc (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.public_route_table_assoc (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_s3_bucket_ownership_controls.wordpress_bucket_ownership_controls (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_s3_bucket_public_access_block.wordpress_bucket_access_block (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.region"
+		"[root] root" -> "[root] output.public_ip (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+		"[root] root" -> "[root] var.database_instance"
+		"[root] root" -> "[root] var.wordpress_instance"
+	}
+}
